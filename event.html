@@ -3,135 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event on Link</title>
-    <meta property="og:title" content="You're invited to an event on Link!">
-    <meta property="og:description" content="Open Link to see event details and RSVP.">
+    <title>Event on link</title>
+    <meta property="og:title" content="You're invited to an event on link!">
+    <meta property="og:description" content="Open link to see event details and RSVP.">
     <meta property="og:type" content="website">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #FAFAFA;
-            color: #1A1A1A;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fff;
+            padding: 40px 20px;
         }
-        .container {
-            max-width: 400px;
-            width: 100%;
+        .container { max-width: 720px; margin: 0 auto; }
+        .header {
             text-align: center;
+            margin-bottom: 48px;
         }
         .logo {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 900;
             font-style: italic;
-            color: #3B82F6;
-            margin-bottom: 32px;
+            color: #1447B8;
+            margin-bottom: 4px;
+        }
+        .tagline {
+            font-size: 15px;
+            color: #666;
         }
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 28px 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            margin-bottom: 24px;
-            text-align: left;
+            background: #f9f9f9;
+            border-radius: 14px;
+            padding: 32px 24px;
+            margin-bottom: 32px;
+            text-align: center;
         }
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-        .card h2 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .card h1 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
         }
         .card p {
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.5;
+            font-size: 15px;
+            color: #666;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 320px;
+            margin: 0 auto 48px;
         }
         .btn {
             display: block;
-            width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            font-size: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
-            margin-bottom: 12px;
             text-align: center;
-            transition: transform 0.15s;
         }
-        .btn:active { transform: scale(0.97); }
         .btn-primary {
-            background: #3B82F6;
+            background: #1447B8;
             color: white;
         }
         .btn-secondary {
-            background: #F3F4F6;
-            color: #1A1A1A;
+            background: #f5f5f5;
+            color: #1a1a1a;
         }
         .footer {
-            margin-top: 24px;
-            font-size: 12px;
-            color: #9CA3AF;
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #666;
         }
+        .footer a { color: #1447B8; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container">
+    <div class="header">
         <div class="logo">link</div>
-
-        <div class="card">
-            <div class="card-icon">&#127881;</div>
-            <h2>You've been invited to an event!</h2>
-            <p>Open Link to see the full event details, RSVP, and join the conversation.</p>
-        </div>
-
-        <a href="#" class="btn btn-primary" id="openBtn">Open in Link</a>
-        <a href="#" class="btn btn-secondary" id="downloadBtn">Get Link on the App Store</a>
-
-        <div class="footer">
-            Link - Campus Social
-        </div>
+        <div class="tagline">Campus Social</div>
     </div>
 
-    <script>
-        var APP_STORE_URL = 'https://apps.apple.com/app/link-campus-social/id__APP_ID__';
+    <div class="card">
+        <h1>You've been invited to an event!</h1>
+        <p>Open link to see the full event details, RSVP, and join the conversation.</p>
+    </div>
 
-        // Get event ID from URL params
-        var params = new URLSearchParams(window.location.search);
-        var eventId = params.get('id') || '';
+    <div class="buttons">
+        <a href="#" class="btn btn-primary" id="openBtn">Open in link</a>
+        <a href="#" class="btn btn-secondary" id="downloadBtn">Get link on the App Store</a>
+    </div>
 
-        var DEEP_LINK = 'linkapp://event?id=' + eventId;
-        var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    <div class="footer">
+        <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a>
+    </div>
+</div>
 
-        var openBtn = document.getElementById('openBtn');
-        var downloadBtn = document.getElementById('downloadBtn');
+<script>
+    var APP_STORE_URL = 'https://apps.apple.com/app/link-campus-social/id__APP_ID__';
+    var params = new URLSearchParams(window.location.search);
+    var eventId = params.get('id') || '';
+    var DEEP_LINK = 'linkapp://event?id=' + eventId;
+    var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 
-        downloadBtn.href = APP_STORE_URL;
+    var openBtn = document.getElementById('openBtn');
+    var downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.href = APP_STORE_URL;
 
-        openBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Try to open the app
-            window.location.href = DEEP_LINK;
-            // Fallback to App Store if app not installed
-            setTimeout(function() {
-                window.location.href = APP_STORE_URL;
-            }, 1500);
-        });
+    openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = DEEP_LINK;
+        setTimeout(function() { window.location.href = APP_STORE_URL; }, 1500);
+    });
 
-        // On iOS, try to open app automatically
-        if (isIOS && eventId) {
-            window.location.href = DEEP_LINK;
-            setTimeout(function() {
-                // If we're still here, app isn't installed
-            }, 2000);
-        }
-    </script>
+    if (isIOS && eventId) {
+        window.location.href = DEEP_LINK;
+    }
+</script>
 </body>
 </html>
