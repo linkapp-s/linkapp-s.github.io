@@ -32,25 +32,19 @@
     <p class="submessage">Open link to see the details and RSVP.</p>
     <div class="buttons">
         <a href="#" class="btn-primary" id="openBtn">Open in link</a>
-        <a href="#" class="btn-secondary" id="downloadBtn">Get the App</a>
+        <a href="https://apps.apple.com/app/link-campus-social/id6761304945" class="btn-secondary" id="downloadBtn">Get the App</a>
     </div>
-    <p class="contact"><a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a></p>
+    <p class="contact">Questions? <a href="mailto:support.linkapp@gmail.com">support.linkapp@gmail.com</a></p>
 </div>
 <script>
-    var APP_STORE_URL = 'https://apps.apple.com/app/link-campus-social/id__APP_ID__';
+    var APP_STORE_URL = 'https://apps.apple.com/app/link-campus-social/id6761304945';
     var params = new URLSearchParams(window.location.search);
-    var eventId = params.get('id') || '';
-    var DEEP_LINK = 'linkapp://event?id=' + eventId;
-
-    document.getElementById('downloadBtn').href = APP_STORE_URL;
-    document.getElementById('openBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = DEEP_LINK;
-        setTimeout(function() { window.location.href = APP_STORE_URL; }, 1500);
-    });
-
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && eventId) {
-        window.location.href = DEEP_LINK;
+    var eventId = params.get('id');
+    var openBtn = document.getElementById('openBtn');
+    if (eventId) {
+        openBtn.href = 'linkapp://event?id=' + eventId;
+    } else {
+        openBtn.href = APP_STORE_URL;
     }
 </script>
 </body>
